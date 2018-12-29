@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first/refresh/CommonStyle.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-// ignore: must_be_immutable
 class PullLoadWidget extends StatefulWidget {
-  IndexedWidgetBuilder itemBuilder;
-  RefreshCallback onLoadMore;
-  RefreshCallback onRefresh;
-  PullLoadWidgetControl control;
-  Key refreshKey;
+  final IndexedWidgetBuilder itemBuilder;
+  final RefreshCallback onLoadMore;
+  final RefreshCallback onRefresh;
+  final PullLoadWidgetControl control;
+  final Key refreshKey;
 
   PullLoadWidget(this.itemBuilder, this.onLoadMore, this.onRefresh, this.control, this.refreshKey);
 
@@ -59,14 +59,12 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
     }
   }
 
-  ///根据配置状态返还列表Item
-  _getItem(index) {
-    if (!control.needHeader && control.dataList.length != 0 && index == control.dataList.length) {
-      ///不需要头部时，最后一个为加载更多
+  ///根据配置状态返回实际列表渲染Item
+  _getItem(int index) {
+    if (!control.needHeader && index == control.dataList.length && control.dataList.length != 0) {
+      ///如果不需要头部，并且数据不为0，当index等于数据长度时，渲染加载更多Item（因为index是从0开始）
       return _buildProgressIndicator();
-    } else if (control.needHeader &&
-        control.dataList.length != 0 &&
-        index == control.dataList.length + 1) {
+    } else if (control.needHeader && control.dataList.length != 0 && index == _getListCount() - 1) {
       ///不需要头部时，最后一个为加载更多
       return _buildProgressIndicator();
     } else if (!control.needHeader && control.dataList.length == 0) {
@@ -85,12 +83,13 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
         ///保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。
         physics: const AlwaysScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          _getItem(index);
+          return _getItem(index);
         },
         itemCount: _getListCount(),
         controller: _scrollController,
       ),
       onRefresh: onRefresh,
+      key: refreshKey,
     );
   }
 
@@ -101,7 +100,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new SpinKitRotatingCircle(
-                color: Color(0xFF24292E),
+                color: Color(CommonColors.primaryColor),
               ),
               new Container(
                 width: 5.0,
@@ -109,9 +108,8 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
               new Text(
                 "加载中...",
                 style: new TextStyle(
-                  color: Color(0xFF121917),
+                  color: Color(CommonColors.secondTextColor),
                   fontSize: 14.0,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

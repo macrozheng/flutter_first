@@ -14,6 +14,7 @@ import 'package:flutter_first/path/PathProviderPage.dart';
 import 'package:flutter_first/permission/PermissionHandlerPage.dart';
 import 'package:flutter_first/photoview/PhotoViewPage.dart';
 import 'package:flutter_first/redux/FlutterReduxApp.dart';
+import 'package:flutter_first/refresh/RefreshListPage.dart';
 import 'package:flutter_first/share/SharePage.dart';
 import 'package:flutter_first/sp/SharedPreferencesPage.dart';
 import 'package:flutter_first/spinkit/FlutterSpinkitPage.dart';
@@ -61,6 +62,7 @@ class MainPage extends StatelessWidget {
     new PermissionHandlerPage(),
     new ScopedModelPage(),
     new PackageInfoPage(),
+    new RefreshListPage(),
   ];
   final List<String> routeWidgetTitles = [
     "Container的使用",
@@ -88,6 +90,7 @@ class MainPage extends StatelessWidget {
     "permission_handler的使用",
     "scoped_model的使用",
     "package_info的使用",
+    "RefreshIndicator及dio的综合应用",
   ];
 
   @override
