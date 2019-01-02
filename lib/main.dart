@@ -5,6 +5,9 @@ import 'package:flutter_first/device/DeviceInfoPage.dart';
 import 'package:flutter_first/eventbus/EventBusPage.dart';
 import 'package:flutter_first/expanded/ExpandedPage.dart';
 import 'package:flutter_first/listView/ListViewPage.dart';
+import 'package:flutter_first/localization/DemoLocalizations.dart';
+import 'package:flutter_first/localization/DemoLocalizationsDelegate.dart';
+import 'package:flutter_first/localization/FreeLocalizationsPage.dart';
 import 'package:flutter_first/model/ScopedModelPage.dart';
 import 'package:flutter_first/other/ExitPage.dart';
 import 'package:flutter_first/other/KeyBordPage.dart';
@@ -25,13 +28,28 @@ import 'package:flutter_first/tabbar/TabBarTopPageWidget.dart';
 import 'package:flutter_first/toast/ToastPage.dart';
 import 'package:flutter_first/url/OpenUrlPage.dart';
 import 'package:flutter_first/webview/WebViewPage.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: new MainPage());
+    return MaterialApp(
+      onGenerateTitle: (context) {
+        return DemoLocalizations.of(context).mainTitle;
+      },
+      home: new MainPage(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DemoLocalizationsDelegate.delegate
+      ],
+      supportedLocales: [
+        const Locale("zh", "CN"),
+        const Locale("en", "US"),
+      ],
+    );
   }
 }
 
@@ -63,6 +81,7 @@ class MainPage extends StatelessWidget {
     new ScopedModelPage(),
     new PackageInfoPage(),
     new RefreshListPage(),
+    new FreeLocalizationsPage(),
   ];
   final List<String> routeWidgetTitles = [
     "Container的使用",
@@ -91,13 +110,14 @@ class MainPage extends StatelessWidget {
     "scoped_model的使用",
     "package_info的使用",
     "RefreshIndicator及dio的综合应用",
+    "Localizations的使用",
   ];
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("MainPage"),
+        title: new Text(DemoLocalizations.of(context).mainTitle),
       ),
       body: new ListView.builder(
         itemBuilder: (context, index) {

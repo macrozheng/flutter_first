@@ -39,6 +39,8 @@ dependencies:
   permission_handler: ^2.1.2
   scoped_model: ^1.0.1
   package_info: ^0.3.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
