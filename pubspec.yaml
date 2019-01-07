@@ -39,6 +39,7 @@ dependencies:
   permission_handler: ^2.1.2
   scoped_model: ^1.0.1
   package_info: ^0.3.2
+  sqflite: ^0.13.0+1
   flutter_localizations:
     sdk: flutter
 

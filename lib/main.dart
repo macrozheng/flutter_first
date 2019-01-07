@@ -21,6 +21,7 @@ import 'package:flutter_first/refresh/RefreshListPage.dart';
 import 'package:flutter_first/share/SharePage.dart';
 import 'package:flutter_first/sp/SharedPreferencesPage.dart';
 import 'package:flutter_first/spinkit/FlutterSpinkitPage.dart';
+import 'package:flutter_first/sqfile/SqfliteDemoPage.dart';
 import 'package:flutter_first/statusbar/StatusBarPage.dart';
 import 'package:flutter_first/svg/FlutterSvgPage.dart';
 import 'package:flutter_first/tabbar/TabBarBottomPageWidget.dart';
@@ -82,6 +83,7 @@ class MainPage extends StatelessWidget {
     new PackageInfoPage(),
     new RefreshListPage(),
     new FreeLocalizationsPage(),
+    new SqfliteDemoPage(),
   ];
   final List<String> routeWidgetTitles = [
     "Container的使用",
@@ -111,6 +113,7 @@ class MainPage extends StatelessWidget {
     "package_info的使用",
     "RefreshIndicator及dio的综合应用",
     "Localizations的使用",
+    "sqflite的使用",
   ];
 
   @override
