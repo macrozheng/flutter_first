@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter_first/eventbus/UserLoggedInEvent.dart';
-import 'package:flutter_first/json/user.dart';
+import 'package:flutter_first/json/User.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EventBusPage extends StatefulWidget {

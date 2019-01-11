@@ -1,4 +1,4 @@
-import 'package:flutter_first/json/user.dart';
+import 'package:flutter_first/json/User.dart';
 
 class UserLoggedInEvent {
   User user;
